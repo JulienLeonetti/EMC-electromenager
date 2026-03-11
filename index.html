@@ -1,0 +1,808 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="EMC Électroménager à Ajaccio : dépannage, livraison, installation et reprise d'anciens appareils. Conseils personnalisés et grandes marques." />
+  <title>EMC Électroménager — Ajaccio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #000000;
+      --yellow: #FFED0A;
+      --yellow-dark: #E6D300;
+      --white: #FFFFFF;
+      --muted: #BBBBBB;
+      --panel: #0D0D0D;
+      --panel-2: #141414;
+      --shadow: 0 20px 50px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --radius-lg: 28px;
+      --max: 1140px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(255,237,10,0.08), transparent 70%),
+        radial-gradient(800px 500px at 85% 0%, rgba(255,255,255,0.06), transparent 70%),
+        var(--black);
+    }
+    img { max-width: 100%; display: block; }
+    iframe { max-width: 100%; }
+    h1, h2, h3, p, .brand span, .contact-links a { overflow-wrap: anywhere; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    header.scrolled {
+      background: rgba(0,0,0,0.92);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .logo img { width: 42px; height: 42px; object-fit: contain; }
+    .logo span {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 22px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .nav-links a { color: var(--muted); font-weight: 600; }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+      min-height: 44px;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+    .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .burger {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: var(--white);
+    }
+    .burger span {
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      position: relative;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .burger span::before,
+    .burger span::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      left: 0;
+      transition: transform 0.3s ease, top 0.3s ease;
+    }
+    .burger span::before { top: -6px; }
+    .burger span::after { top: 6px; }
+
+    .burger.open span { transform: rotate(45deg); }
+    .burger.open span::before { top: 0; transform: rotate(90deg); }
+    .burger.open span::after { top: 0; transform: rotate(90deg); }
+
+    .mobile-menu {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: var(--panel);
+    }
+    .mobile-menu.open { max-height: 340px; }
+    .mobile-menu a { display: block; padding: 12px 0; font-weight: 600; color: var(--muted); }
+    .mobile-menu a:hover { color: var(--yellow); }
+
+    .hero {
+      padding: 40px 0 56px;
+    }
+    .hero-grid {
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 7vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0 0 22px;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-media {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 260px;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.6s ease;
+    }
+    .hero-media:hover img { transform: scale(1.06); }
+    .hero-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 18px 20px 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+      color: white;
+    }
+    .hero-overlay strong { display: block; font-size: 14px; color: var(--yellow); }
+
+    section { padding: 56px 0; }
+    .section-title {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(24px, 5vw, 40px);
+      margin: 0;
+    }
+    .section-title p { margin: 0; color: var(--muted); }
+
+    .about {
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .cards { display: grid; gap: 18px; }
+    .card {
+      background: var(--panel-2);
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 25px 55px rgba(0,0,0,0.6); border-color: rgba(255,237,10,0.4); }
+    .card h3 { margin: 12px 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--yellow);
+      display: grid;
+      place-items: center;
+      color: var(--black);
+      font-size: 18px;
+    }
+
+    .categories { display: grid; gap: 16px; }
+    .category-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 180px;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .category-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+      z-index: 1;
+    }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; }
+    .category-content {
+      position: absolute;
+      z-index: 2;
+      inset: auto 18px 18px 18px;
+    }
+    .category-content h3 { margin: 8px 0 6px; }
+    .category-content p { margin: 0; font-size: 13px; opacity: 0.85; }
+
+    .brands {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      background: #060606;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .brand {
+      background: #0A0A0A;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px 12px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      min-height: 64px;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .brand img {
+      height: clamp(20px, 6vw, 28px);
+      width: auto;
+      max-width: 100%;
+      filter: invert(1) grayscale(1) brightness(1.6);
+      opacity: 0.92;
+    }
+    .brand:hover { transform: translateY(-3px); border-color: rgba(255,237,10,0.4); }
+
+    .brand-feature {
+      display: grid;
+      gap: 18px;
+    }
+    .brand-feature-card {
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      display: grid;
+      gap: 0;
+    }
+    .brand-feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 200px;
+    }
+    .brand-feature-content {
+      padding: 22px;
+    }
+    .brand-feature-content h3 { margin: 0 0 10px; font-size: 20px; }
+    .brand-feature-content p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .zone-map {
+      display: grid;
+      gap: 18px;
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .map-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .map-meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .advantages { display: grid; gap: 16px; }
+
+    .hours {
+      background: var(--panel);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: grid;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hours strong { color: var(--yellow); }
+
+    .contact {
+      background: var(--panel-2);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-links { display: grid; gap: 12px; }
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #101010;
+      color: var(--white);
+    }
+    .contact-links a:hover { border-color: rgba(255,237,10,0.5); }
+
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,237,10,0.4);
+      color: var(--yellow);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .social-btn:hover { transform: translateY(-2px); background: rgba(255,237,10,0.08); }
+    .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    footer {
+      background: #050505;
+      color: white;
+      padding: 40px 0 30px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    footer a { color: white; }
+    .footer-grid { display: grid; gap: 18px; }
+
+    .nav,
+    .nav-actions,
+    .logo,
+    .hero-grid,
+    .hero-cta,
+    .brands,
+    .brand,
+    .brand-feature,
+    .brand-feature-card,
+    .contact,
+    .contact-links,
+    .footer-grid {
+      min-width: 0;
+    }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .burger { display: none; }
+      .hero { padding: 80px 0 90px; }
+      .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .categories { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .brand-feature-card { grid-template-columns: 1fr 1fr; }
+      .brand-feature-card img { min-height: 260px; }
+      .advantages { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .footer-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .cards { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .categories { grid-template-columns: repeat(4, minmax(0,1fr)); }
+      .brands { grid-template-columns: repeat(5, minmax(0,1fr)); }
+      .advantages { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .contact { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+    }
+    @media (max-width: 480px) {
+      .container { width: min(100% - 24px, var(--max)); }
+      section { padding: 46px 0; }
+      .hero { padding: 32px 0 46px; }
+      .hero-media { min-height: 220px; }
+      .hero-cta .btn { flex: 1 1 180px; }
+      .hero-cta .btn { white-space: normal; text-align: center; }
+      .nav { flex-wrap: nowrap; }
+      .logo { flex: 1 1 auto; min-width: 0; }
+      .nav-actions { margin-left: auto; gap: 8px; flex: 0 0 auto; }
+      .nav-actions .btn-primary { display: none; }
+      .mobile-menu a { padding: 14px 0; }
+      .brands { gap: 10px; padding: 14px; }
+      .brand { min-height: 56px; padding: 12px 10px; }
+      .map-frame { aspect-ratio: 4 / 3; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container nav">
+      <div class="logo">
+        
+        <span>EMC Électroménager</span>
+      </div>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#services">Services</a>
+        <a href="#marques">Marques</a>
+        <a href="#univers">Univers</a>
+        <a href="#contact">Contact</a>
+        
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="tel:+33647508726">Appeler maintenant</a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="container">
+        <a href="#services">Services </a>
+        <a href="#marques">Marques</a>
+        <a href="#univers">Univers produits</a>
+        <a href="#horaires">Horaires & zone</a>
+        <a href="#contact">Nous contacter</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="badge-row">
+          </div>
+          <h1>Votre spécialiste en électroménager à Ajaccio</h1>
+          <p>EMC Électroménager accompagne les particuliers avec des grandes marques, un conseil sur-mesure et des services complets pour équiper votre intérieur en toute confiance.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="tel:+33647508726">Appeler maintenant</a>
+            <a class="btn btn-ghost" href="#services">Découvrir les services</a>
+          </div>
+        </div>
+        <div class="hero-media reveal">
+          <img src="image0.jpeg" alt="Électroménager premium" />
+        </div>
+      </div>
+    </section>
+    <section id="services">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Services </h2>
+          <p>Un service complet qui vous fait gagner du temps et sécurise chaque étape.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="icon">⚡</div>
+            <h3>Dépannage</h3>
+            <p>Interventions rapides et professionnelles pour remettre vos appareils en service.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🚚</div>
+            <h3>Livraison</h3>
+            <p>Livraison organisée à Ajaccio et dans les alentours, avec prise de rendez-vous.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🛠️</div>
+            <h3>Installation</h3>
+            <p>Mise en place soignée, réglages et conseils pour une prise en main immédiate.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">♻️</div>
+            <h3>Reprise anciens appareils</h3>
+            <p>Nous récupérons vos équipements pour simplifier le remplacement.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🎯</div>
+            <h3>Conseil personnalisé</h3>
+            <p>Un accompagnement expert pour choisir l’appareil adapté à vos besoins.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="marques">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Marques d'électroménager</h2>
+          <p>Une sélection de références reconnues pour leur fiabilité, leur design et leur innovation.</p>
+        </div>
+        <div class="brands reveal">
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Samsung_old_logo_before_year_2015.svg" alt="Samsung">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Bosch-logo.svg/1280px-Bosch-logo.svg.png" alt="Bosch">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Logo_of_the_LG_Corporation_%281995-2014%29.svg/3840px-Logo_of_the_LG_Corporation_%281995-2014%29.svg.png" alt="LG">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Electrolux_2015.svg/1280px-Electrolux_2015.svg.png" alt="Electrolux">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Whirlpool_Corporation_Logo_%28as_of_2017%29.svg" alt="Whirlpool">
+          </div>
+          <div class="brand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Miele_logo.svg/1280px-Miele_logo.svg.png" alt="Miele">
+          </div>
+          <div class="brand more-brands">
+            <span>Et bien plus de marques encore</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="univers">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Univers produits</h2>
+      <p>Trois marques majeures qui incarnent performance, design et innovation.</p>
+    </div>
+    <div class="brand-feature">
+      <article class="brand-feature-card reveal">
+        <img src="https://linqcdn.avbportal.com/images/7cdbe70d-bd75-4608-b25e-5a9d8a284725.png" alt="Samsung électroménager" />
+        <div class="brand-feature-content">
+          <h3>Samsung</h3>
+          <p>Samsung est l’un des leaders mondiaux de l’électroménager. La marque propose des appareils innovants combinant technologie avancée, design moderne et performance énergétique.</p>
+        </div>
+      </article>
+      <article class="brand-feature-card reveal">
+        <img src="https://smegphilippines.com/cdn/shop/collections/Screenshot_2024-10-10_at_4.26.26_PM_1c911017-ae7c-430f-ad80-ccd6dbe8d72d.png?v=1729058082" alt="Smeg électroménager" />
+        <div class="brand-feature-content">
+          <h3>Smeg</h3>
+          <p>Smeg est une marque italienne réputée pour son design iconique et ses appareils haut de gamme. Elle combine esthétique rétro et technologies modernes pour des cuisines élégantes.</p>
+        </div>
+      </article>
+      <article class="brand-feature-card reveal">
+        <img src="https://cdn.mos.cms.futurecdn.net/K5ztewkzEpdfaFUwYbvQZ3-2560-80.jpg" alt="Ninja petit électroménager" />
+        <div class="brand-feature-content">
+          <h3>Ninja</h3>
+          <p>Ninja est une marque reconnue dans le petit électroménager pour ses appareils puissants et innovants comme les air fryers et robots culinaires.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+    <section>
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Pourquoi choisir EMC</h2>
+          <p>Un partenaire local fiable pour équiper votre foyer avec confiance.</p>
+        </div>
+        <div class="advantages">
+          <article class="card reveal">
+            <div class="icon">🏷️</div>
+            <h3>Grandes marques</h3>
+            <p>Des références reconnues pour leur fiabilité et leur design.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🤝</div>
+            <h3>Conseil personnalisé</h3>
+            <p>Un accompagnement humain et précis à chaque étape.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🧰</div>
+            <h3>Dépannage local</h3>
+            <p>Une équipe réactive pour préserver votre tranquillité.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🚛</div>
+            <h3>Installation clé en main</h3>
+            <p>Livraison et mise en place soignées, sans stress.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">📍</div>
+            <h3>Service de proximité</h3>
+            <p>Ajaccio et ses alentours, avec un suivi local.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="horaires">
+      <div class="container">
+        <div class="hours reveal">
+          <h2>Horaires & zone d’intervention</h2>
+          <div>
+            <strong>Lundi – Vendredi</strong><br />
+            9h00 – 12h00 • 14h30 – 19h00
+          </div>
+          <div class="zone-map reveal">
+            <iframe class="map-frame" src="https://www.google.com/maps?q=Ajaccio&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Ajaccio"></iframe>
+            <div class="map-meta">
+              <div>Zone d’intervention : <strong>Ajaccio et ses alentours</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Contactez-nous</h2>
+          <p>Un besoin urgent ou une question ? Nous répondons rapidement.</p>
+        </div>
+        <div class="contact">
+          <div class="reveal">
+            <h3>EMC Électroménager</h3>
+            <p>Entreprise locale à Ajaccio et ses alentours. Pas de boutique physique : nous vous accompagnons directement par téléphone et sur rendez-vous.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="tel:+33647508726">Appeler maintenant</a>
+              <a class="btn btn-ghost" href="mailto:emc2a@orange.fr">Envoyer un email</a>
+            </div>
+            <div class="social-row">
+              <a class="social-btn" href="https://www.instagram.com/emc_electromenager/" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.51 4.51 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 10.5zm5-3.75a1 1 0 1 1-1-1 1 1 0 0 1 1 1z"/></svg>
+              </a>
+              <a class="social-btn" href="https://www.facebook.com/stephane.sbraggia.5" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="contact-links reveal">
+            <a href="tel:+33647508726">
+              <span>Téléphone</span>
+              <strong>06 47 50 87 26</strong>
+            </a>
+            <a href="mailto:emc2a@orange.fr">
+              <span>Email</span>
+              <strong>emc2a@orange.fr</strong>
+            </a>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <img src="image0.jpeg" alt="Logo EMC" />
+          <span>EMC Électroménager</span>
+        </div>
+        <p>Spécialiste local de l’électroménager à Ajaccio et ses alentours.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Tél : <a href="tel:+33647508726">06 47 50 87 26</a></p>
+        <p>Email : <a href="mailto:emc2a@orange.fr">emc2a@orange.fr</a></p>
+        
+      </div>
+      <div>
+        <h4>Horaires & zone</h4>
+        <p>Lundi – Vendredi</p>
+        <p>9h00 – 12h00</p>
+        <p>14h30 – 19h00</p>
+        <p>Ajaccio et ses alentours</p>
+      </div>
+    </div>
+    <div class="container" style="margin-top:22px; font-size:12px; color:#8f8f8f;">
+      © 2026 EMC Électroménager. Tous droits réservés.
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById("burger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const header = document.getElementById("header");
+
+    burger.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      burger.classList.toggle("open", isOpen);
+      burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const onScroll = () => {
+      header.classList.toggle("scrolled", window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
